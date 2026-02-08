@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Écoles - ASP Stages</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         @include('users.ecole.style')
+
 </head>
 <body>
    
@@ -43,7 +45,7 @@
         <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
            <button class="btn-add" id="addSchoolBtn" type="button" data-bs-toggle="modal" data-bs-target="#addStagiareModal">
     <i class="fas fa-plus-circle"></i>
-    Ajouter un stagiaire
+    Modifier Le stagiaire
 </button>
         </div>
 
@@ -335,7 +337,38 @@
 
     
 
-       
+         document.addEventListener('DOMContentLoaded', function() {
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Succès !',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end'
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#0c2461'
+            });
+        @endif
+        
+        // Affichage des erreurs de validation (ex: nom_ecole requis)
+        @if($errors->any())
+            Swal.fire({
+                icon: 'warning',
+                title: 'Attention',
+                html: '{!! implode("<br>", $errors->all()) !!}',
+                confirmButtonColor: '#0c2461'
+            });
+        @endif
+    });
     </script>
 
 </body>
