@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         @include('users.ecole.style')
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -85,11 +87,11 @@
                     <div class="actions">
                         
                             
-                           <a class="btn-action btn-edit" title="Modifier" href="{{ route('users.services.editServices', $service->id) }}">
+                           <a class="btn-action btn-edit" title="Modifier" href="{{ route('admin.service.edit', $service->id) }}">
     <i class="fas fa-edit"></i>
 </a>
                        
-                        <button class="btn-action btn-delete" onclick="confirmDelete({{$service->id}}, '{{$service->nom_ecole}}')" title="Supprimer">
+                        <button class="btn-action btn-delete" onclick="" title="Supprimer">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -129,7 +131,7 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="schoolForm"  action="{{route('addservice.users')}}" method="POST">
+                <form id="schoolForm"  action="{{route('admin.service.addService')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -206,23 +208,38 @@
 
     
 
-       $(document).ready(function() {
-    // Initialisation de DataTable
-    var table = $('#schoolsTable').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.13.7/i18n/fr-FR.json"
-        },
-        "dom": 'rtip', // Cache la barre de recherche par défaut de DT pour utiliser la vôtre
-        "pageLength": 10,
-        "ordering": true,
-        "responsive": true
-    });
+       document.addEventListener('DOMContentLoaded', function() {
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Succès !',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end'
+            });
+        @endif
 
-    // Liaison de votre input de recherche personnalisé
-    $('#searchInput').on('keyup', function() {
-        table.search(this.value).draw();
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#0c2461'
+            });
+        @endif
+        
+        // Affichage des erreurs de validation (ex: nom_ecole requis)
+        @if($errors->any())
+            Swal.fire({
+                icon: 'warning',
+                title: 'Attention',
+                html: '{!! implode("<br>", $errors->all()) !!}',
+                confirmButtonColor: '#0c2461'
+            });
+        @endif
     });
-});
     </script>
 
 </body>

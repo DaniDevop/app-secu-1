@@ -16,3 +16,11 @@ Route::get('/administration/ecole/',[EcoleController::class,'ecole'])->name('adm
 Route::post('/administration/ecole/addEcole',[EcoleController::class,'addEcole'])->name('admin.ecole.addEcole');
 Route::get('/administration/ecole/edit/{id}',[EcoleController::class,'edit'])->name('admin.ecole.edit');
 Route::post('/administration/ecole/EditEcole',[EcoleController::class,'SaveEditEcole'])->name('admin.ecole.SaveEditEcole');
+
+// Services
+
+
+Route::get('/administration/service/',[EcoleController::class,'service'])->name('admin.service.index');
+Route::post('/administration/service/ServiceAgent',[EcoleController::class,'addservice'])->name('admin.service.addService');
+Route::get('/administration/service/edit/{id}',[EcoleController::class,'editServices'])->name('admin.service.edit');
+Route::post('/administration/service/ServiceAgent/editService',[EcoleController::class,'editServicesPost'])->name('admin.service.editServicesPost');

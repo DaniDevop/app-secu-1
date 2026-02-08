@@ -19,7 +19,7 @@
                 <i class="fas fa-building"></i>
                 <span class="nav-text">Établissements</span>
             </a>
-            <a href="" class="nav-item">
+            <a href="{{route('admin.service.index')}}" class="nav-item">
                 <i class="fas fa-calendar-check"></i>
                 <span class="nav-text">Services</span>
             </a>
