@@ -15,7 +15,7 @@ public function services(): BelongsTo
 }
 
 
-/* public function affectation(){
+ public function affectation(){
     return $this->hasMany(AffectionAgent::class);
-} */
+} 
 }

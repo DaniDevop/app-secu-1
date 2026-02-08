@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AffectationController;
 use App\Http\Controllers\AgentStagiareController;
 use App\Http\Controllers\EcoleController;
 use App\Http\Controllers\UsersController;
@@ -34,3 +35,12 @@ Route::post('/administration/service/ServiceAgent/editService',[EcoleController:
     Route::get('/users/admin/stagiare/edit/{id}',[AgentStagiareController::class,'editAgentStagiare'])->name('users.editAgentStagiare');  
     Route::post('/users/admin/stagiare/EditAgent',[AgentStagiareController::class,'EditAgentStagiareModif'])->name('users.EditgentStagiare');
     
+
+// Affectations
+ Route::get('/users/admin/affection/agent',[AffectationController::class,'index'])->name('users.affectation.agent');  
+    Route::post('/users/admin/affection/agent/ecole',[AffectationController::class,'addAffectation'])->name('users.affectation.addAffectation');  
+    Route::get('/users/admin/affection/agent{edit}',[AffectationController::class,'editAffectation'])->name('users.editAffectationt.agent');  
+    
+    Route::post('/users/admin/affection/agent/ecole/edit',[AffectationController::class,'EditAffectationAgent'])->name('users.EditAffectation.Agent');  
+
+

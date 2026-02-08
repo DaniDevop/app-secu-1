@@ -23,7 +23,7 @@
                 <i class="fas fa-calendar-check"></i>
                 <span class="nav-text">Services</span>
             </a>
-            <a href="" class="nav-item">
+            <a href="{{route('users.affectation.agent')}}" class="nav-item">
                 <i class="fas fa-file-alt"></i>
                 <span class="nav-text">Affectations</span>
             </a>
