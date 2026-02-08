@@ -15,7 +15,7 @@
                 <i class="fas fa-user-graduate"></i>
                 <span class="nav-text">Stagiaires</span>
             </a>
-            <a href="" class="nav-item">
+            <a href="{{route('admin.ecole.index')}}" class="nav-item">
                 <i class="fas fa-building"></i>
                 <span class="nav-text">Établissements</span>
             </a>

@@ -85,11 +85,11 @@
                     <div class="actions">
                         
                             
-                           <a class="btn-action btn-edit" title="Modifier" href="{{ route('users.ecole.modif', $ecole->id) }}">
+                           <a class="btn-action btn-edit" title="Modifier" href="{{route('admin.ecole.edit',$ecole->id)}}">
     <i class="fas fa-edit"></i>
 </a>
                        
-                        <button class="btn-action btn-delete" onclick="confirmDelete({{$ecole->id}}, '{{$ecole->nom_ecole}}')" title="Supprimer">
+                        <button class="btn-action btn-delete" onclick="" title="Supprimer">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -129,7 +129,7 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="schoolForm"  action="{{route('users.addEcole')}}" method="POST">
+                <form id="schoolForm"  action="{{route('admin.ecole.addEcole')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
