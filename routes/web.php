@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 Route::post('/doLogin',[UsersController::class,'doLogin'])->name('login.user.admin');
 Route::post('/administration/addAccountUser',[UsersController::class,'addAdmin'])->name('admin.add.admin');
-
+    
 Route::get('/administration/admin',[UsersController::class,'listesAdmin'])->name('admin.listes.Admin');
 
 Route::get('/administration/dashboard',[UsersController::class,'index'])->name('admin.dashboard');

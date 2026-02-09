@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -34,5 +35,34 @@ class UsersController extends Controller
       public function index(){
 
       return view('users.index');
+      }
+
+
+      public function listesAdmin(){
+     $stagiares=User::all();
+
+      return view('users.admin.index',compact('stagiares'));
+      }
+
+      public function addAdmin(Request $request){
+
+         $request->validate([
+             'name'=>'required',
+             'prenom'=>'required',
+             'tel'=>'required',
+             'grade'=>'required',
+         ]);
+
+         $admin=new User();
+         $admin->name=$request->name;
+         $admin->prenom=$request->prenom;
+         $admin->tel=$request->tel;
+         $admin->grade=$request->grade;
+         $admin->email=$request->name.'@gmail.com';
+         $admin->role='';
+         $admin->password=Hash::make($request->pasword);
+         $admin->save();
+         return back();
+
       }
 }

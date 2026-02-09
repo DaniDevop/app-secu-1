@@ -90,10 +90,7 @@
                            <a class="btn-action btn-edit" title="Modifier" href="{{ route('admin.service.edit', $service->id) }}">
     <i class="fas fa-edit"></i>
 </a>
-                       
-                        <button class="btn-action btn-delete" onclick="" title="Supprimer">
-                            <i class="fas fa-trash"></i>
-                        </button>
+                    
                     </div>
                 </td>
             </tr>
