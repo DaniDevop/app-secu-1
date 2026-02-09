@@ -7,7 +7,7 @@
         </div>
         
         <nav class="sidebar-nav">
-            <a href="#" class="nav-item active">
+            <a href="{{route('admin.dashboard')}}" class="nav-item active">
                 <i class="fas fa-tachometer-alt"></i>
                 <span class="nav-text">Tableau de bord</span>
             </a>

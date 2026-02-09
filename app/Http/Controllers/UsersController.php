@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AffectionAgent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,18 @@ class UsersController extends Controller
          $admin->save();
          return back();
 
+      }
+
+
+      public function changesStatus($id,$status){
+        
+          $affectation=AffectionAgent::find($id);
+          if(!$affectation){
+          return back()->with('error','Affectation validé ');
+          }
+
+          $affectation->status=$status;
+          $affectation->save();
+          return back()->with('success','Affectation '.$status);
       }
 }
