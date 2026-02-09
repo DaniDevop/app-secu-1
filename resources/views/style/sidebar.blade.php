@@ -27,15 +27,9 @@
                 <i class="fas fa-file-alt"></i>
                 <span class="nav-text">Affectations</span>
             </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-chart-bar"></i>
-                <span class="nav-text">Statistiques</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-cog"></i>
-                <span class="nav-text">Paramètres</span>
-            </a>
-            <a href="" class="nav-item">
+           
+           
+            <a href="{{route('admin.listes.Admin')}}" class="nav-item">
                 <i class="fas fa-users-cog"></i>
                 <span class="nav-text">Administration</span>
             </a>

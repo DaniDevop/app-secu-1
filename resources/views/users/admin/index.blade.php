@@ -51,7 +51,7 @@
         <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
            <button class="btn-add" id="addSchoolBtn" type="button" data-bs-toggle="modal" data-bs-target="#addStagiareModal">
     <i class="fas fa-plus-circle"></i>
-    Ajouter un stagiaire
+    Ajouter un admin
 </button>
         </div>
 
@@ -63,11 +63,10 @@
 <table id="schoolsTable" class="table table-hover w-100">
             <thead>
             <tr>
-                <th width="35%">Matricule</th>
+                <th width="35%">Numéro</th>
                 <th width="50%">Nom </th>
                 <th width="15%">Prenom</th>
                 <th width="15%">Grade</th>
-                <th width="15%">Services</th>
                 <th width="15%">Tel</th>
                 <th width="15%">Actions</th>
 
@@ -79,19 +78,18 @@
         <td>
             <div class="school-name">
                 <i class="fas fa-id-card" style="margin-right: 10px; color: var(--primary);"></i>
-                {{$stagiare->matricule}}
+                {{$stagiare->id}}
             </div>
         </td>
         <td>{{$stagiare->name}}</td>
         <td>{{$stagiare->prenom}}</td>
         <td><span class="badge bg-light text-dark">{{$stagiare->grade}}</span></td>
-        <td>{{ $stagiare->services->nom_services }}</td>
         <td>{{ $stagiare->tel }}</td> <td>
             <div class="actions">
-                <a class="btn-action btn-edit" title="Modifier" href="{{ route('users.editAgentStagiare', $stagiare->id) }}">
+                <a class="btn-action btn-edit" title="Modifier" href="">
                     <i class="fas fa-edit"></i>
                 </a>
-               
+                
             </div>
         </td>
     </tr>
@@ -125,27 +123,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addStagiareModalLabel">
-                    <i class="fas fa-user-graduate"></i> Ajouter un stagiaire
+                    <i class="fas fa-user-graduate"></i> Ajouter un admin
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="stagiareForm" action="{{route('users.addAgent.Stagiare')}}" method="POST">
+            <form id="stagiareForm" action="{{route('admin.add.admin')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="matricule">
-                                    <i class="fas fa-id-card"></i> Matricule *
-                                </label>
-                                <input type="text" 
-                                       id="matricule" 
-                                       name="matricule"
-                                       class="form-control" 
-                                       placeholder="Ex: STG2024001"
-                                       required>
-
+                                
+                                
                                         @error('matricule')
                         <div class="invalid-feedback d-block">
                             <i class="fas fa-exclamation-circle"></i> {{ $message }}
@@ -162,7 +152,7 @@
                                        id="nom" 
                                        name="name"
                                        class="form-control" 
-                                       placeholder="Nom du stagiaire"
+                                       placeholder="Nom "
                                        required>
                             </div>
                         </div>
@@ -178,7 +168,7 @@
                                        id="prenom" 
                                        name="prenom"
                                        class="form-control" 
-                                       placeholder="Prénom du stagiaire"
+                                       placeholder="Prénom "
                                        required>
                             </div>
                         </div>
@@ -234,25 +224,36 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label" for="service_id">
-                                    <i class="fas fa-building"></i> Service *
-                                </label>
-                                <select id="service_id" name="service_id" class="form-control" required>
-                                    <option value="">Sélectionner un service</option>
-                                    @foreach($servicesAll as $service)
-                                        <option value="{{ $service->id }}">{{ $service->nom_services }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
+         <div class="col-md-6">
+    <div class="form-group">
+        <label class="form-label" for="password">
+            <i class="fas fa-lock"></i> Mot de passe *
+        </label>
+        <input type="password"
+               id="password"
+               name="password"
+               class="form-control"
+               placeholder="Mot de passe"
+               minlength="4"
+               required>
+    </div>
+</div>
 
-                </div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label class="form-label" for="password_confirmation">
+            <i class="fas fa-lock"></i> Confirmation du mot de passe *
+        </label>
+        <input type="password"
+               id="password_confirmation"
+               name="password2"
+               class="form-control"
+               placeholder="Confirmer le mot de passe"
+               minlength="4"
+               required>
+    </div>
+</div>
+
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">
@@ -363,6 +364,33 @@
             });
         @endif
     });
+
+    document.getElementById('stagiareForm').addEventListener('submit', function (e) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('password_confirmation').value;
+
+    // Vérification longueur minimale
+    if (password.length < 4) {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'warning',
+            title: 'Mot de passe trop court',
+            text: 'Le mot de passe doit contenir au moins 4 caractères'
+        });
+        return;
+    }
+
+    // Vérification correspondance
+    if (password !== confirmPassword) {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Les mots de passe ne correspondent pas'
+        });
+        return;
+    }
+});
     </script>
 
 
