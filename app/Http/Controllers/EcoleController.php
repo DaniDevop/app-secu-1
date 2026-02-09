@@ -12,7 +12,7 @@ class EcoleController extends Controller
      public function ecole(){
 
 
-       $ecoles=EcoleStage::all();
+       $ecoles=EcoleStage::paginate(5);
 
       return view('users.ecole.ecole',compact('ecoles'));
      }
@@ -82,7 +82,7 @@ public function SaveEditEcole(Request $request)
      public function service(){
 
      
-       $services=ServiceAgent::all();
+       $services=ServiceAgent::paginate(5);
       return view('users.services.index',compact('services'));
      }
 

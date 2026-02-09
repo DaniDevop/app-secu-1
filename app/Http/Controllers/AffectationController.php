@@ -12,7 +12,7 @@ class AffectationController extends Controller
 {
     public function index(){
      
-    $affectations=AffectionAgent::all();
+    $affectations=AffectionAgent::paginate(9);
     $agentAll=AgentStagiare::all();
     $ecoleStageAll=EcoleStage::all();
     

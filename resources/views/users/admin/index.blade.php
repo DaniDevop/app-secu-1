@@ -40,10 +40,7 @@
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchInput" placeholder="Rechercher une école...">
                 </div>
-                <div class="notification-bell">
-                    <i class="fas fa-bell"></i>
-                    <div class="notification-badge">3</div>
-                </div>
+               
             </div>
         </header>
 
@@ -96,6 +93,7 @@
     @endforeach
 </tbody>
     </table>
+    {{$stagiares->links()}}
 </div>
 
         <!-- Pagination -->
@@ -321,7 +319,8 @@
         "dom": 'rtip', // Cache la barre de recherche par défaut de DT pour utiliser la vôtre
         "pageLength": 10,
         "ordering": true,
-        "responsive": true
+        "responsive": true,
+        "paginate":false
     });
 
     // Liaison de votre input de recherche personnalisé

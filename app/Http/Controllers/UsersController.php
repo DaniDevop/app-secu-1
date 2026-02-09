@@ -44,7 +44,7 @@ class UsersController extends Controller
 
 
       public function listesAdmin(){
-     $stagiares=User::all();
+     $stagiares=User::paginate(5);
 
       return view('users.admin.index',compact('stagiares'));
       }

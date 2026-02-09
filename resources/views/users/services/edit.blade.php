@@ -34,10 +34,7 @@
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchInput" placeholder="Rechercher une école...">
                 </div>
-                <div class="notification-bell">
-                    <i class="fas fa-bell"></i>
-                    <div class="notification-badge">3</div>
-                </div>
+                
             </div>
         </header>
 

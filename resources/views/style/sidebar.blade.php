@@ -54,7 +54,6 @@
             </div>
             <div class="user-details">
                 <h4>{{ Auth::user()->name ?? 'Admin Direction' }}</h4>
-                <p>{{ Auth::user()->role ?? 'Administrateur' }}</p>
             </div>
         </div>
     </div>

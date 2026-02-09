@@ -177,6 +177,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-3">
+        {{ $affectations->links() }}
+    </div>
         </div>
     </div>
 
@@ -263,6 +266,7 @@
                 ],
                 "pageLength": 10,
                 "responsive": true,
+                "paginate":false,
                 "order": [[4, "asc"]] // Trie par statut par défaut
             });
 

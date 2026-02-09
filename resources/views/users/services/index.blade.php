@@ -36,10 +36,7 @@
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchInput" placeholder="Rechercher un service...">
                 </div>
-                <div class="notification-bell">
-                    <i class="fas fa-bell"></i>
-                    <div class="notification-badge">3</div>
-                </div>
+                
             </div>
         </header>
 
@@ -57,7 +54,7 @@
             <table id="schoolsTable" class="table table-hover align-middle">
                 <thead>
                     <tr>
-                        <th width="15%"><i class="fas fa-hashtag me-2"></i>Code</th>
+                        <th width="15%"><i class="fas fa-hashtag me-2"></i>Numéro</th>
                         <th width="70%"><i class="fas fa-building me-2"></i>Nom du Service</th>
                         <th width="15%" class="text-center">Actions</th>
                     </tr>
@@ -88,6 +85,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-3">
+        {{ $services->links() }}
+    </div>
         </div>
     </div>
 
@@ -136,7 +136,8 @@
                 "dom": 'rtip',
                 "pageLength": 10,
                 "ordering": true,
-                "responsive": true
+                "responsive": true,
+                "paginate":false
             });
 
             // Barre de recherche personnalisée

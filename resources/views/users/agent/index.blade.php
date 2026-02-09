@@ -98,6 +98,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center mt-3">
+        {{ $stagiares->links() }}
+    </div>
         </div>
     </div>
 
@@ -280,7 +283,8 @@
                     }
                 ],
                 "pageLength": 10,
-                "responsive": true
+                "responsive": true,
+                "paginate":false
             });
 
             // Déplace les boutons vers notre conteneur pour un meilleur design
