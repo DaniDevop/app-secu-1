@@ -12,7 +12,11 @@ class UsersController extends Controller
 {
     
 
+      public function logout(){
 
+      Auth::logout();
+       return view('index');
+      }
       public function doLogin(Request $request){
          
           $credentials=$request->validate([

@@ -8,9 +8,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('login');
 
 Route::post('/doLogin',[UsersController::class,'doLogin'])->name('login.user.admin');
+
+
+
+Route::middleware(['user.auth'])->group(function(){
+    Route::post('/logout/admin',[UsersController::class,'logout'])->name('logout');
+
 Route::post('/administration/addAccountUser',[UsersController::class,'addAdmin'])->name('admin.add.admin');
 Route::get('/administration/affectation/status/{id}/{status}',[UsersController::class,'changesStatus'])->name('changes.Status.stagiare');
 
@@ -46,4 +52,4 @@ Route::post('/administration/service/ServiceAgent/editService',[EcoleController:
     
     Route::post('/users/admin/affection/agent/ecole/edit',[AffectationController::class,'EditAffectationAgent'])->name('users.EditAffectation.Agent');  
 
-
+});
